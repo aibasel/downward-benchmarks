@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import pprint
 
 
 HELP = "Convert suite name to list of domains or tasks."
@@ -334,7 +335,7 @@ def main():
     parser.add_argument("suite", choices=suite_names, help="suite name")
     args = parser.parse_args()
     suite_func = globals()[prefix + args.suite]
-    print(suite_func())
+    pprint.pprint(suite_func())
 
 
 if __name__ == "__main__":
