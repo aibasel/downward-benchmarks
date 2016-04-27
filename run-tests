@@ -1,0 +1,16 @@
+#! /bin/bash
+
+# Test setup:
+#
+# $ sudo apt-get install pip
+# $ sudo pip install -U pep8 pyflakes pytest
+
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+pep8 *.py
+pyflakes suites.py
+py.test tests.py
+
+echo "All tests passed"
