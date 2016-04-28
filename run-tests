@@ -12,5 +12,7 @@ cd "$(dirname "$0")"
 pep8 *.py
 pyflakes suites.py
 py.test tests.py
+python2 suites.py optimal_strips > /dev/null
+python3 suites.py optimal_strips > /dev/null
 
 echo "All tests passed"
