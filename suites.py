@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import pprint
+import textwrap
 
 
 HELP = "Convert suite name to list of domains or tasks."
@@ -333,9 +333,17 @@ def main():
         if name.startswith(prefix)]
     parser = argparse.ArgumentParser(description=HELP)
     parser.add_argument("suite", choices=suite_names, help="suite name")
+    parser.add_argument(
+        "--width", default=72, type=int,
+        help="output line width (default: %(default)s). Use 1 for single "
+             "column.")
     args = parser.parse_args()
     suite_func = globals()[prefix + args.suite]
-    pprint.pprint(suite_func())
+    print(textwrap.fill(
+        str(suite_func()),
+        width=args.width,
+        break_long_words=False,
+        break_on_hyphens=False))
 
 
 if __name__ == "__main__":
