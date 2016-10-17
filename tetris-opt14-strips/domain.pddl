@@ -4,8 +4,8 @@
 (define (domain tetris)
 (:requirements :typing :equality :negative-preconditions :action-costs)
   (:types  
+	position pieces - object
 	one_square two_straight right_l - pieces
-	position 	
 	)
 
   (:predicates
