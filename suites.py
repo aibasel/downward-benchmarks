@@ -332,10 +332,6 @@ def main():
         if name.startswith(prefix)]
     parser = argparse.ArgumentParser(description=HELP)
     parser.add_argument("suite", choices=suite_names, help="suite name")
-    parser.add_argument(
-        "--width", default=72, type=int,
-        help="output line width (default: %(default)s). Use 1 for single "
-             "column.")
     args = parser.parse_args()
     suite_func = globals()[prefix + args.suite]
     print(suite_func())
