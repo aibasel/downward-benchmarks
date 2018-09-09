@@ -286,6 +286,63 @@ def suite_ipc14():
         suite_ipc14_opt() + suite_ipc14_sat()))
 
 
+def suite_ipc18_opt_adl():
+    return [
+        'caldera-opt18-adl',
+        'caldera-split-opt18-adl',
+        'nurikabe-opt18-adl',
+        'settlers-opt18-adl',
+    ]
+
+
+def suite_ipc18_opt_strips():
+    return [
+        'agricola-opt18-strips',
+        'data-network-opt18-strips', # adl, but translated into strips
+        'organic-synthesis-opt18-strips',
+        'organic-synthesis-split-opt18-strips', # adl, but translated into strips
+        'petri-net-alignment-opt18-strips',
+        'snake-opt18-strips',
+        'spider-opt18-strips',
+        'termes-opt18-strips',
+    ]
+
+
+def suite_ipc18_opt():
+    return sorted(suite_ipc18_opt_adl() + suite_ipc18_opt_strips())
+
+
+def suite_ipc18_sat_adl():
+    return [
+        'caldera-sat18-adl',
+        'caldera-split-sat18-adl',
+        'flashfill-sat18-adl',
+        'nurikabe-sat18-adl',
+        'settlers-sat18-adl',
+    ]
+
+
+def suite_ipc18_sat_strips():
+    return [
+        'agricola-sat18-strips',
+        'data-network-sat18-strips', # adl, but translated into strips
+        'organic-synthesis-sat18-strips',
+        'organic-synthesis-split-sat18-strips', # adl, but translated into strips
+        'snake-sat18-strips',
+        'spider-sat18-strips',
+        'termes-sat18-strips',
+    ]
+
+
+def suite_ipc18_sat():
+    return sorted(suite_ipc18_sat_adl() + suite_ipc18_sat_strips())
+
+
+def suite_ipc18():
+    return sorted(set(
+        suite_ipc18_opt() + suite_ipc18_sat()))
+
+
 def suite_unsolvable():
     return sorted(
         ['mystery:prob%02d.pddl' % index
@@ -296,14 +353,16 @@ def suite_unsolvable():
 def suite_optimal_adl():
     return sorted(
         suite_ipc98_to_ipc04_adl() + suite_ipc06_adl() +
-        suite_ipc08_opt_adl() + suite_ipc14_opt_adl())
+        suite_ipc08_opt_adl() + suite_ipc14_opt_adl() +
+        suite_ipc18_opt_adl())
 
 
 def suite_optimal_strips():
     return sorted(
         suite_ipc98_to_ipc04_strips() + suite_ipc06_strips() +
         suite_ipc06_strips_compilations() + suite_ipc08_opt_strips() +
-        suite_ipc11_opt() + suite_ipc14_opt_strips())
+        suite_ipc11_opt() + suite_ipc14_opt_strips() +
+        suite_ipc18_opt_strips())
 
 
 def suite_optimal():
@@ -313,14 +372,16 @@ def suite_optimal():
 def suite_satisficing_adl():
     return sorted(
         suite_ipc98_to_ipc04_adl() + suite_ipc06_adl() +
-        suite_ipc08_sat_adl() + suite_ipc14_sat_adl())
+        suite_ipc08_sat_adl() + suite_ipc14_sat_adl() +
+        suite_ipc18_sat_adl())
 
 
 def suite_satisficing_strips():
     return sorted(
         suite_ipc98_to_ipc04_strips() + suite_ipc06_strips() +
         suite_ipc06_strips_compilations() + suite_ipc08_sat_strips() +
-        suite_ipc11_sat() + suite_ipc14_sat_strips())
+        suite_ipc11_sat() + suite_ipc14_sat_strips() +
+        suite_ipc18_sat_strips())
 
 
 def suite_satisficing():
@@ -331,7 +392,8 @@ def suite_all():
     return sorted(
         suite_ipc98_to_ipc04() + suite_ipc06() +
         suite_ipc06_strips_compilations() + suite_ipc08() +
-        suite_ipc11() + suite_ipc14() + suite_alternative_formulations())
+        suite_ipc11() + suite_ipc14() + suite_ipc18() +
+        suite_alternative_formulations())
 
 
 def parse_args():
