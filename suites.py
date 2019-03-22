@@ -1,7 +1,8 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import argparse
+from enum import Enum
 
 
 HELP = """Convert a suite name to a list of domains.
@@ -394,6 +395,162 @@ def suite_all():
         suite_alternative_formulations())
 
 
+class CostType(Enum):
+    UNIT = 1
+    ZERO = 2
+    NONUNIT_NONZERO = 3
+
+
+domain_to_cost_type = {
+    'agricola-opt18-strips': CostType.NONUNIT_NONZERO,
+    'agricola-sat18-strips': CostType.NONUNIT_NONZERO,
+    'airport': CostType.UNIT,
+    'airport-adl': CostType.UNIT,
+    'assembly': CostType.UNIT,
+    'barman-mco14-strips': CostType.UNIT,
+    'barman-opt11-strips': CostType.NONUNIT_NONZERO,
+    'barman-opt14-strips': CostType.UNIT,
+    'barman-sat11-strips': CostType.NONUNIT_NONZERO,
+    'barman-sat14-strips': CostType.UNIT,
+    'blocks': CostType.UNIT,
+    'caldera-opt18-adl': CostType.UNIT,
+    'caldera-sat18-adl': CostType.UNIT,
+    'caldera-split-opt18-adl': CostType.NONUNIT_NONZERO,
+    'caldera-split-sat18-adl': CostType.NONUNIT_NONZERO,
+    'cavediving-14-adl': CostType.NONUNIT_NONZERO,
+    'childsnack-opt14-strips': CostType.UNIT,
+    'childsnack-sat14-strips': CostType.UNIT,
+    'citycar-opt14-adl': CostType.NONUNIT_NONZERO,
+    'citycar-sat14-adl': CostType.NONUNIT_NONZERO,
+    'data-network-opt18-strips': CostType.ZERO,
+    'data-network-sat18-strips': CostType.ZERO,
+    'depot': CostType.UNIT,
+    'driverlog': CostType.UNIT,
+    'elevators-opt08-strips': CostType.ZERO,
+    'elevators-opt11-strips': CostType.ZERO,
+    'elevators-sat08-strips': CostType.ZERO,
+    'elevators-sat11-strips': CostType.ZERO,
+    'flashfill-sat18-adl': CostType.ZERO,
+    'floortile-opt11-strips': CostType.NONUNIT_NONZERO,
+    'floortile-opt14-strips': CostType.NONUNIT_NONZERO,
+    'floortile-sat11-strips': CostType.NONUNIT_NONZERO,
+    'floortile-sat14-strips': CostType.NONUNIT_NONZERO,
+    'freecell': CostType.UNIT,
+    'ged-opt14-strips': CostType.ZERO,
+    'ged-sat14-strips': CostType.ZERO,
+    'grid': CostType.UNIT,
+    'gripper': CostType.UNIT,
+    'hiking-agl14-strips': CostType.UNIT,
+    'hiking-opt14-strips': CostType.UNIT,
+    'hiking-sat14-strips': CostType.UNIT,
+    'logistics00': CostType.UNIT,
+    'logistics98': CostType.UNIT,
+    'maintenance-opt14-adl': CostType.UNIT,
+    'maintenance-sat14-adl': CostType.UNIT,
+    'miconic': CostType.UNIT,
+    'miconic-fulladl': CostType.UNIT,
+    'miconic-simpleadl': CostType.UNIT,
+    'movie': CostType.UNIT,
+    'mprime': CostType.UNIT,
+    'mystery': CostType.UNIT,
+    'no-mprime': CostType.UNIT,
+    'no-mystery': CostType.UNIT,
+    'nomystery-opt11-strips': CostType.UNIT,
+    'nomystery-sat11-strips': CostType.UNIT,
+    'nurikabe-opt18-adl': CostType.UNIT,
+    'nurikabe-sat18-adl': CostType.UNIT,
+    'openstacks': CostType.UNIT,
+    'openstacks-agl14-strips': CostType.ZERO,
+    'openstacks-opt08-adl': CostType.ZERO,
+    'openstacks-opt08-strips': CostType.ZERO,
+    'openstacks-opt11-strips': CostType.ZERO,
+    'openstacks-opt14-strips': CostType.ZERO,
+    'openstacks-sat08-adl': CostType.ZERO,
+    'openstacks-sat08-strips': CostType.ZERO,
+    'openstacks-sat11-strips': CostType.ZERO,
+    'openstacks-sat14-strips': CostType.ZERO,
+    'openstacks-strips': CostType.UNIT,
+    'optical-telegraphs': CostType.UNIT,
+    'organic-synthesis-opt18-strips': CostType.UNIT,
+    'organic-synthesis-sat18-strips': CostType.UNIT,
+    'organic-synthesis-split-opt18-strips': CostType.NONUNIT_NONZERO,
+    'organic-synthesis-split-sat18-strips': CostType.NONUNIT_NONZERO,
+    'parcprinter-08-strips': CostType.ZERO,
+    'parcprinter-opt11-strips': CostType.ZERO,
+    'parcprinter-sat11-strips': CostType.ZERO,
+    'parking-opt11-strips': CostType.UNIT,
+    'parking-opt14-strips': CostType.UNIT,
+    'parking-sat11-strips': CostType.UNIT,
+    'parking-sat14-strips': CostType.UNIT,
+    'pathways': CostType.UNIT,
+    'pathways-noneg': CostType.UNIT,
+    'pegsol-08-strips': CostType.ZERO,
+    'pegsol-opt11-strips': CostType.ZERO,
+    'pegsol-sat11-strips': CostType.ZERO,
+    'petri-net-alignment-opt18-strips': CostType.ZERO,
+    'philosophers': CostType.UNIT,
+    'pipesworld-notankage': CostType.UNIT,
+    'pipesworld-tankage': CostType.UNIT,
+    'psr-large': CostType.UNIT,
+    'psr-middle': CostType.UNIT,
+    'psr-small': CostType.UNIT,
+    'rovers': CostType.UNIT,
+    'satellite': CostType.UNIT,
+    'scanalyzer-08-strips': CostType.NONUNIT_NONZERO,
+    'scanalyzer-opt11-strips': CostType.NONUNIT_NONZERO,
+    'scanalyzer-sat11-strips': CostType.NONUNIT_NONZERO,
+    'schedule': CostType.UNIT,
+    'settlers-opt18-adl': CostType.ZERO,
+    'settlers-sat18-adl': CostType.ZERO,
+    'snake-opt18-strips': CostType.UNIT,
+    'snake-sat18-strips': CostType.UNIT,
+    'sokoban-opt08-strips': CostType.ZERO,
+    'sokoban-opt11-strips': CostType.ZERO,
+    'sokoban-sat08-strips': CostType.ZERO,
+    'sokoban-sat11-strips': CostType.ZERO,
+    'spider-opt18-strips': CostType.ZERO,
+    'spider-sat18-strips': CostType.ZERO,
+    'storage': CostType.UNIT,
+    'termes-opt18-strips': CostType.UNIT,
+    'termes-sat18-strips': CostType.UNIT,
+    'tetris-opt14-strips': CostType.NONUNIT_NONZERO,
+    'tetris-sat14-strips': CostType.NONUNIT_NONZERO,
+    'thoughtful-mco14-strips': CostType.UNIT,
+    'thoughtful-sat14-strips': CostType.UNIT,
+    'tidybot-opt11-strips': CostType.UNIT,
+    'tidybot-opt14-strips': CostType.UNIT,
+    'tidybot-sat11-strips': CostType.UNIT,
+    'tpp': CostType.UNIT,
+    'transport-opt08-strips': CostType.NONUNIT_NONZERO,
+    'transport-opt11-strips': CostType.NONUNIT_NONZERO,
+    'transport-opt14-strips': CostType.NONUNIT_NONZERO,
+    'transport-sat08-strips': CostType.NONUNIT_NONZERO,
+    'transport-sat11-strips': CostType.NONUNIT_NONZERO,
+    'transport-sat14-strips': CostType.NONUNIT_NONZERO,
+    'trucks': CostType.UNIT,
+    'trucks-strips': CostType.UNIT,
+    'visitall-opt11-strips': CostType.UNIT,
+    'visitall-opt14-strips': CostType.UNIT,
+    'visitall-sat11-strips': CostType.UNIT,
+    'visitall-sat14-strips': CostType.UNIT,
+    'woodworking-opt08-strips': CostType.NONUNIT_NONZERO,
+    'woodworking-opt11-strips': CostType.NONUNIT_NONZERO,
+    'woodworking-sat08-strips': CostType.NONUNIT_NONZERO,
+    'woodworking-sat11-strips': CostType.NONUNIT_NONZERO,
+    'zenotravel': CostType.UNIT,
+}
+
+
+def filter_suite(suite, cost_type):
+    result = []
+    for domain in suite:
+        if domain not in domain_to_cost_type:
+            print("Could not find cost type of domain {}".format(domain))
+            exit(1)
+        if domain_to_cost_type[domain] == cost_type:
+            result.append(domain)
+    return result
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("suite", help="suite name")
@@ -407,9 +564,15 @@ def main():
         if name.startswith(prefix)]
     parser = argparse.ArgumentParser(description=HELP)
     parser.add_argument("suite", choices=suite_names, help="suite name")
+    parser.add_argument("--cost-type", choices=[val.name.lower() for val in CostType],
+        help="filter the chosen suite according to operator costs")
     args = parser.parse_args()
     suite_func = globals()[prefix + args.suite]
-    print(suite_func())
+    suite = suite_func()
+    if args.cost_type:
+        cost_type = CostType[args.cost_type.upper()]
+        suite = filter_suite(suite, cost_type)
+    print(suite)
 
 
 if __name__ == "__main__":
