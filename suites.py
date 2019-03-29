@@ -19,6 +19,8 @@ suites which are not part of the regular IPC suites. They are only part
 of special suites such as "suite_alternative_formulations" and
 "suite_all"."""
 
+_PREFIX = "suite_"
+
 
 def suite_alternative_formulations():
     return ['airport-adl', 'no-mprime', 'no-mystery']
@@ -394,22 +396,26 @@ def suite_all():
         suite_alternative_formulations())
 
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("suite", help="suite name")
+def get_suite_names():
+    return [
+        name[len(_PREFIX):] for name in sorted(globals().keys())
+        if name.startswith(_PREFIX)]
+
+
+def get_suite(name):
+    suite_func = globals()[_PREFIX + name]
+    return suite_func()
+
+
+def _parse_args():
+    parser = argparse.ArgumentParser(description=HELP)
+    parser.add_argument("suite", choices=get_suite_names(), help="suite name")
     return parser.parse_args()
 
 
 def main():
-    prefix = "suite_"
-    suite_names = [
-        name[len(prefix):] for name in sorted(globals().keys())
-        if name.startswith(prefix)]
-    parser = argparse.ArgumentParser(description=HELP)
-    parser.add_argument("suite", choices=suite_names, help="suite name")
-    args = parser.parse_args()
-    suite_func = globals()[prefix + args.suite]
-    print(suite_func())
+    args = _parse_args()
+    print(get_suite(args.suite))
 
 
 if __name__ == "__main__":
