@@ -26,7 +26,7 @@ def test_suite_satisficing():
         set(suite_satisficing_adl() + suite_satisficing_strips()) ==
         set(suite_ipc98_to_ipc04() + suite_ipc06() +
             suite_ipc06_strips_compilations() + suite_ipc08_sat() +
-            suite_ipc11_sat() + suite_ipc14_sat()))
+            suite_ipc11_sat() + suite_ipc14_sat() + suite_ipc18_sat()))
 
 
 def test_suite_optimal():
@@ -34,7 +34,7 @@ def test_suite_optimal():
         set(suite_optimal_adl() + suite_optimal_strips()) ==
         set(suite_ipc98_to_ipc04() + suite_ipc06() +
             suite_ipc06_strips_compilations() + suite_ipc08_opt() +
-            suite_ipc11_opt() + suite_ipc14_opt()))
+            suite_ipc11_opt() + suite_ipc14_opt() + suite_ipc18_opt()))
 
 
 def test_paths_exist():
