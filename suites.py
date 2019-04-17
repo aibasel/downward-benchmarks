@@ -3,6 +3,7 @@
 
 import argparse
 from enum import Enum
+import sys
 
 
 HELP = """Convert a suite name to a list of domains.
@@ -547,8 +548,7 @@ def filter_suite(suite, cost_type):
     result = []
     for domain in suite:
         if domain not in domain_to_cost_type:
-            print("Could not find cost type of domain {}".format(domain))
-            exit(1)
+            sys.exit("Could not find cost type of domain {}".format(domain))
         if domain_to_cost_type[domain] == cost_type:
             result.append(domain)
     return result
