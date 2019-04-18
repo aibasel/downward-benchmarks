@@ -398,160 +398,183 @@ def suite_all():
         suite_alternative_formulations())
 
 
-class CostType(Enum):
-    UNIT = 1
-    ZERO = 2
-    NONUNIT_NONZERO = 3
+TAG_HAS_UNIT_COST_ACTIONS = 'unit-cost'
+TAG_HAS_ZERO_COST_ACTIONS = 'zero-cost'
+TAG_HAS_BINARY_COST_ACTIONS = 'binary-cost'
 
 
-domain_to_cost_type = {
-    'agricola-opt18-strips': CostType.NONUNIT_NONZERO,
-    'agricola-sat18-strips': CostType.NONUNIT_NONZERO,
-    'airport': CostType.UNIT,
-    'airport-adl': CostType.UNIT,
-    'assembly': CostType.UNIT,
-    'barman-mco14-strips': CostType.UNIT,
-    'barman-opt11-strips': CostType.NONUNIT_NONZERO,
-    'barman-opt14-strips': CostType.UNIT,
-    'barman-sat11-strips': CostType.NONUNIT_NONZERO,
-    'barman-sat14-strips': CostType.UNIT,
-    'blocks': CostType.UNIT,
-    'caldera-opt18-adl': CostType.UNIT,
-    'caldera-sat18-adl': CostType.UNIT,
-    'caldera-split-opt18-adl': CostType.NONUNIT_NONZERO,
-    'caldera-split-sat18-adl': CostType.NONUNIT_NONZERO,
-    'cavediving-14-adl': CostType.NONUNIT_NONZERO,
-    'childsnack-opt14-strips': CostType.UNIT,
-    'childsnack-sat14-strips': CostType.UNIT,
-    'citycar-opt14-adl': CostType.NONUNIT_NONZERO,
-    'citycar-sat14-adl': CostType.NONUNIT_NONZERO,
-    'data-network-opt18-strips': CostType.ZERO,
-    'data-network-sat18-strips': CostType.ZERO,
-    'depot': CostType.UNIT,
-    'driverlog': CostType.UNIT,
-    'elevators-opt08-strips': CostType.ZERO,
-    'elevators-opt11-strips': CostType.ZERO,
-    'elevators-sat08-strips': CostType.ZERO,
-    'elevators-sat11-strips': CostType.ZERO,
-    'flashfill-sat18-adl': CostType.ZERO,
-    'floortile-opt11-strips': CostType.NONUNIT_NONZERO,
-    'floortile-opt14-strips': CostType.NONUNIT_NONZERO,
-    'floortile-sat11-strips': CostType.NONUNIT_NONZERO,
-    'floortile-sat14-strips': CostType.NONUNIT_NONZERO,
-    'freecell': CostType.UNIT,
-    'ged-opt14-strips': CostType.ZERO,
-    'ged-sat14-strips': CostType.ZERO,
-    'grid': CostType.UNIT,
-    'gripper': CostType.UNIT,
-    'hiking-agl14-strips': CostType.UNIT,
-    'hiking-opt14-strips': CostType.UNIT,
-    'hiking-sat14-strips': CostType.UNIT,
-    'logistics00': CostType.UNIT,
-    'logistics98': CostType.UNIT,
-    'maintenance-opt14-adl': CostType.UNIT,
-    'maintenance-sat14-adl': CostType.UNIT,
-    'miconic': CostType.UNIT,
-    'miconic-fulladl': CostType.UNIT,
-    'miconic-simpleadl': CostType.UNIT,
-    'movie': CostType.UNIT,
-    'mprime': CostType.UNIT,
-    'mystery': CostType.UNIT,
-    'no-mprime': CostType.UNIT,
-    'no-mystery': CostType.UNIT,
-    'nomystery-opt11-strips': CostType.UNIT,
-    'nomystery-sat11-strips': CostType.UNIT,
-    'nurikabe-opt18-adl': CostType.UNIT,
-    'nurikabe-sat18-adl': CostType.UNIT,
-    'openstacks': CostType.UNIT,
-    'openstacks-agl14-strips': CostType.ZERO,
-    'openstacks-opt08-adl': CostType.ZERO,
-    'openstacks-opt08-strips': CostType.ZERO,
-    'openstacks-opt11-strips': CostType.ZERO,
-    'openstacks-opt14-strips': CostType.ZERO,
-    'openstacks-sat08-adl': CostType.ZERO,
-    'openstacks-sat08-strips': CostType.ZERO,
-    'openstacks-sat11-strips': CostType.ZERO,
-    'openstacks-sat14-strips': CostType.ZERO,
-    'openstacks-strips': CostType.UNIT,
-    'optical-telegraphs': CostType.UNIT,
-    'organic-synthesis-opt18-strips': CostType.UNIT,
-    'organic-synthesis-sat18-strips': CostType.UNIT,
-    'organic-synthesis-split-opt18-strips': CostType.NONUNIT_NONZERO,
-    'organic-synthesis-split-sat18-strips': CostType.NONUNIT_NONZERO,
-    'parcprinter-08-strips': CostType.ZERO,
-    'parcprinter-opt11-strips': CostType.ZERO,
-    'parcprinter-sat11-strips': CostType.ZERO,
-    'parking-opt11-strips': CostType.UNIT,
-    'parking-opt14-strips': CostType.UNIT,
-    'parking-sat11-strips': CostType.UNIT,
-    'parking-sat14-strips': CostType.UNIT,
-    'pathways': CostType.UNIT,
-    'pathways-noneg': CostType.UNIT,
-    'pegsol-08-strips': CostType.ZERO,
-    'pegsol-opt11-strips': CostType.ZERO,
-    'pegsol-sat11-strips': CostType.ZERO,
-    'petri-net-alignment-opt18-strips': CostType.ZERO,
-    'philosophers': CostType.UNIT,
-    'pipesworld-notankage': CostType.UNIT,
-    'pipesworld-tankage': CostType.UNIT,
-    'psr-large': CostType.UNIT,
-    'psr-middle': CostType.UNIT,
-    'psr-small': CostType.UNIT,
-    'rovers': CostType.UNIT,
-    'satellite': CostType.UNIT,
-    'scanalyzer-08-strips': CostType.NONUNIT_NONZERO,
-    'scanalyzer-opt11-strips': CostType.NONUNIT_NONZERO,
-    'scanalyzer-sat11-strips': CostType.NONUNIT_NONZERO,
-    'schedule': CostType.UNIT,
-    'settlers-opt18-adl': CostType.ZERO,
-    'settlers-sat18-adl': CostType.ZERO,
-    'snake-opt18-strips': CostType.UNIT,
-    'snake-sat18-strips': CostType.UNIT,
-    'sokoban-opt08-strips': CostType.ZERO,
-    'sokoban-opt11-strips': CostType.ZERO,
-    'sokoban-sat08-strips': CostType.ZERO,
-    'sokoban-sat11-strips': CostType.ZERO,
-    'spider-opt18-strips': CostType.ZERO,
-    'spider-sat18-strips': CostType.ZERO,
-    'storage': CostType.UNIT,
-    'termes-opt18-strips': CostType.UNIT,
-    'termes-sat18-strips': CostType.UNIT,
-    'tetris-opt14-strips': CostType.NONUNIT_NONZERO,
-    'tetris-sat14-strips': CostType.NONUNIT_NONZERO,
-    'thoughtful-mco14-strips': CostType.UNIT,
-    'thoughtful-sat14-strips': CostType.UNIT,
-    'tidybot-opt11-strips': CostType.UNIT,
-    'tidybot-opt14-strips': CostType.UNIT,
-    'tidybot-sat11-strips': CostType.UNIT,
-    'tpp': CostType.UNIT,
-    'transport-opt08-strips': CostType.NONUNIT_NONZERO,
-    'transport-opt11-strips': CostType.NONUNIT_NONZERO,
-    'transport-opt14-strips': CostType.NONUNIT_NONZERO,
-    'transport-sat08-strips': CostType.NONUNIT_NONZERO,
-    'transport-sat11-strips': CostType.NONUNIT_NONZERO,
-    'transport-sat14-strips': CostType.NONUNIT_NONZERO,
-    'trucks': CostType.UNIT,
-    'trucks-strips': CostType.UNIT,
-    'visitall-opt11-strips': CostType.UNIT,
-    'visitall-opt14-strips': CostType.UNIT,
-    'visitall-sat11-strips': CostType.UNIT,
-    'visitall-sat14-strips': CostType.UNIT,
-    'woodworking-opt08-strips': CostType.NONUNIT_NONZERO,
-    'woodworking-opt11-strips': CostType.NONUNIT_NONZERO,
-    'woodworking-sat08-strips': CostType.NONUNIT_NONZERO,
-    'woodworking-sat11-strips': CostType.NONUNIT_NONZERO,
-    'zenotravel': CostType.UNIT,
+tags = [
+    TAG_HAS_UNIT_COST_ACTIONS,
+    TAG_HAS_ZERO_COST_ACTIONS,
+    TAG_HAS_BINARY_COST_ACTIONS,
+]
+
+
+domain_to_tags = {
+    'agricola-opt18-strips': [],
+    'agricola-sat18-strips': [],
+    'airport': [TAG_HAS_UNIT_COST_ACTIONS],
+    'airport-adl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'assembly': [TAG_HAS_UNIT_COST_ACTIONS],
+    'barman-mco14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'barman-opt11-strips': [],
+    'barman-opt14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'barman-sat11-strips': [],
+    'barman-sat14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'blocks': [TAG_HAS_UNIT_COST_ACTIONS],
+    'caldera-opt18-adl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'caldera-sat18-adl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'caldera-split-opt18-adl': [],
+    'caldera-split-sat18-adl': [],
+    'cavediving-14-adl': [],
+    'childsnack-opt14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'childsnack-sat14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'citycar-opt14-adl': [],
+    'citycar-sat14-adl': [],
+    'data-network-opt18-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'data-network-sat18-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'depot': [TAG_HAS_UNIT_COST_ACTIONS],
+    'driverlog': [TAG_HAS_UNIT_COST_ACTIONS],
+    'elevators-opt08-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'elevators-opt11-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'elevators-sat08-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'elevators-sat11-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'flashfill-sat18-adl': [TAG_HAS_ZERO_COST_ACTIONS],
+    'floortile-opt11-strips': [],
+    'floortile-opt14-strips': [],
+    'floortile-sat11-strips': [],
+    'floortile-sat14-strips': [],
+    'freecell': [TAG_HAS_UNIT_COST_ACTIONS],
+    'ged-opt14-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'ged-sat14-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'grid': [TAG_HAS_UNIT_COST_ACTIONS],
+    'gripper': [TAG_HAS_UNIT_COST_ACTIONS],
+    'hiking-agl14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'hiking-opt14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'hiking-sat14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'logistics00': [TAG_HAS_UNIT_COST_ACTIONS],
+    'logistics98': [TAG_HAS_UNIT_COST_ACTIONS],
+    'maintenance-opt14-adl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'maintenance-sat14-adl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'miconic': [TAG_HAS_UNIT_COST_ACTIONS],
+    'miconic-fulladl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'miconic-simpleadl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'movie': [TAG_HAS_UNIT_COST_ACTIONS],
+    'mprime': [TAG_HAS_UNIT_COST_ACTIONS],
+    'mystery': [TAG_HAS_UNIT_COST_ACTIONS],
+    'no-mprime': [TAG_HAS_UNIT_COST_ACTIONS],
+    'no-mystery': [TAG_HAS_UNIT_COST_ACTIONS],
+    'nomystery-opt11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'nomystery-sat11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'nurikabe-opt18-adl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'nurikabe-sat18-adl': [TAG_HAS_UNIT_COST_ACTIONS],
+    'openstacks': [TAG_HAS_UNIT_COST_ACTIONS],
+    'openstacks-agl14-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-opt08-adl': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-opt08-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-opt11-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-opt14-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-sat08-adl': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-sat08-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-sat11-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-sat14-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'optical-telegraphs': [TAG_HAS_UNIT_COST_ACTIONS],
+    'organic-synthesis-opt18-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'organic-synthesis-sat18-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'organic-synthesis-split-opt18-strips': [],
+    'organic-synthesis-split-sat18-strips': [],
+    'parcprinter-08-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'parcprinter-opt11-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'parcprinter-sat11-strips': [TAG_HAS_ZERO_COST_ACTIONS],
+    'parking-opt11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'parking-opt14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'parking-sat11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'parking-sat14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'pathways': [TAG_HAS_UNIT_COST_ACTIONS],
+    'pathways-noneg': [TAG_HAS_UNIT_COST_ACTIONS],
+    'pegsol-08-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'pegsol-opt11-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'pegsol-sat11-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'petri-net-alignment-opt18-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'philosophers': [TAG_HAS_UNIT_COST_ACTIONS],
+    'pipesworld-notankage': [TAG_HAS_UNIT_COST_ACTIONS],
+    'pipesworld-tankage': [TAG_HAS_UNIT_COST_ACTIONS],
+    'psr-large': [TAG_HAS_UNIT_COST_ACTIONS],
+    'psr-middle': [TAG_HAS_UNIT_COST_ACTIONS],
+    'psr-small': [TAG_HAS_UNIT_COST_ACTIONS],
+    'rovers': [TAG_HAS_UNIT_COST_ACTIONS],
+    'satellite': [TAG_HAS_UNIT_COST_ACTIONS],
+    'scanalyzer-08-strips': [],
+    'scanalyzer-opt11-strips': [],
+    'scanalyzer-sat11-strips': [],
+    'schedule': [TAG_HAS_UNIT_COST_ACTIONS],
+    'settlers-opt18-adl': [TAG_HAS_ZERO_COST_ACTIONS],
+    'settlers-sat18-adl': [TAG_HAS_ZERO_COST_ACTIONS],
+    'snake-opt18-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'snake-sat18-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'sokoban-opt08-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'sokoban-opt11-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'sokoban-sat08-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'sokoban-sat11-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'spider-opt18-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'spider-sat18-strips': [TAG_HAS_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'storage': [TAG_HAS_UNIT_COST_ACTIONS],
+    'termes-opt18-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'termes-sat18-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'tetris-opt14-strips': [],
+    'tetris-sat14-strips': [],
+    'thoughtful-mco14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'thoughtful-sat14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'tidybot-opt11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'tidybot-opt14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'tidybot-sat11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'tpp': [TAG_HAS_UNIT_COST_ACTIONS],
+    'transport-opt08-strips': [],
+    'transport-opt11-strips': [],
+    'transport-opt14-strips': [],
+    'transport-sat08-strips': [],
+    'transport-sat11-strips': [],
+    'transport-sat14-strips': [],
+    'trucks': [TAG_HAS_UNIT_COST_ACTIONS],
+    'trucks-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'visitall-opt11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'visitall-opt14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'visitall-sat11-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'visitall-sat14-strips': [TAG_HAS_UNIT_COST_ACTIONS],
+    'woodworking-opt08-strips': [],
+    'woodworking-opt11-strips': [],
+    'woodworking-sat08-strips': [],
+    'woodworking-sat11-strips': [],
+    'zenotravel': [TAG_HAS_UNIT_COST_ACTIONS],
 }
 
 
-def filter_suite(suite, cost_type):
+def get_domains_with_tag(suite, tag, invert=False):
     result = []
     for domain in suite:
-        if domain not in domain_to_cost_type:
-            sys.exit("Could not find cost type of domain {}".format(domain))
-        if domain_to_cost_type[domain] == cost_type:
+        if domain not in domain_to_tags:
+            sys.exit("Could not find tag of domain {}".format(domain))
+        if (tag in domain_to_tags[domain] and invert == False) or (tag not in domain_to_tags[domain] and invert == True):
             result.append(domain)
     return result
+
+
+def apply_tags(suite, args):
+    allowed_tags = []
+    if args.with_tag:
+        allowed_tags = args.with_tag
+    forbidden_tags = []
+    if args.without_tag:
+        forbidden_tags = args.without_tag
+    for tag in allowed_tags:
+        if tag in forbidden_tags:
+            sys.exit("Tag {} is both allowed and forbidden".format(tag))
+        suite = get_domains_with_tag(suite, tag)
+    for tag in forbidden_tags:
+        suite = get_domains_with_tag(suite, tag, invert=True)
+    return suite
+
 
 def get_suite_names():
     return [
@@ -567,17 +590,17 @@ def get_suite(name):
 def _parse_args():
     parser = argparse.ArgumentParser(description=HELP)
     parser.add_argument("suite", choices=get_suite_names(), help="suite name")
-    parser.add_argument("--cost-type", choices=[val.name.lower() for val in CostType],
-        help="filter the chosen suite according to operator costs")
+    parser.add_argument("--with-tag", nargs='+', choices=tags,
+        help="specify tags that domains of the chosen suite must have")
+    parser.add_argument("--without-tag", nargs='+', choices=tags,
+        help="specify tags that domains of the chosen suite cannot have")
     return parser.parse_args()
 
 
 def main():
     args = _parse_args()
     suite = get_suite(args.suite)
-    if args.cost_type:
-        cost_type = CostType[args.cost_type.upper()]
-        suite = filter_suite(suite, cost_type)
+    suite = apply_tags(suite, args)
     print(suite)
 
 
