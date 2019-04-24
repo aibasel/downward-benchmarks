@@ -560,13 +560,9 @@ def get_domains_with_tag(suite, tag, invert=False):
     return result
 
 
-def apply_tags(suite, args):
-    allowed_tags = []
-    if args.with_tag:
-        allowed_tags = args.with_tag
-    forbidden_tags = []
-    if args.without_tag:
-        forbidden_tags = args.without_tag
+def apply_tags(suite, with_tag, without_tag):
+    allowed_tags = with_tag or []
+    forbidden_tags = without_tag or []
     for tag in allowed_tags:
         if tag in forbidden_tags:
             sys.exit("Tag {} is both allowed and forbidden".format(tag))
@@ -600,7 +596,7 @@ def _parse_args():
 def main():
     args = _parse_args()
     suite = get_suite(args.suite)
-    suite = apply_tags(suite, args)
+    suite = apply_tags(suite, args.with_tag, args.without_tag)
     print(suite)
 
 
