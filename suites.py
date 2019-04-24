@@ -554,7 +554,8 @@ def get_domains_with_tag(suite, tag, invert=False):
     for domain in suite:
         if domain not in DOMAIN_TO_TAGS:
             sys.exit("Could not find tag of domain {}".format(domain))
-        if (tag in DOMAIN_TO_TAGS[domain] and invert == False) or (tag not in DOMAIN_TO_TAGS[domain] and invert == True):
+        want_tag_in_domain = not invert
+        if (tag in DOMAIN_TO_TAGS[domain]) == want_tag_in_domain:
             result.append(domain)
     return result
 
