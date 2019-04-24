@@ -402,14 +402,14 @@ TAG_HAS_ZERO_COST_ACTIONS = 'zero-cost'
 TAG_HAS_BINARY_COST_ACTIONS = 'binary-cost'
 
 
-tags = [
+TAGS = [
     TAG_HAS_UNIT_COST_ACTIONS,
     TAG_HAS_ZERO_COST_ACTIONS,
     TAG_HAS_BINARY_COST_ACTIONS,
 ]
 
 
-domain_to_tags = {
+DOMAIN_TO_TAGS = {
     'agricola-opt18-strips': [],
     'agricola-sat18-strips': [],
     'airport': [TAG_HAS_UNIT_COST_ACTIONS],
@@ -552,9 +552,9 @@ domain_to_tags = {
 def get_domains_with_tag(suite, tag, invert=False):
     result = []
     for domain in suite:
-        if domain not in domain_to_tags:
+        if domain not in DOMAIN_TO_TAGS:
             sys.exit("Could not find tag of domain {}".format(domain))
-        if (tag in domain_to_tags[domain] and invert == False) or (tag not in domain_to_tags[domain] and invert == True):
+        if (tag in DOMAIN_TO_TAGS[domain] and invert == False) or (tag not in DOMAIN_TO_TAGS[domain] and invert == True):
             result.append(domain)
     return result
 
@@ -589,9 +589,9 @@ def get_suite(name):
 def _parse_args():
     parser = argparse.ArgumentParser(description=HELP)
     parser.add_argument("suite", choices=get_suite_names(), help="suite name")
-    parser.add_argument("--with-tag", nargs='+', choices=tags,
+    parser.add_argument("--with-tag", nargs='+', choices=TAGS,
         help="specify tags that domains of the chosen suite must have")
-    parser.add_argument("--without-tag", nargs='+', choices=tags,
+    parser.add_argument("--without-tag", nargs='+', choices=TAGS,
         help="specify tags that domains of the chosen suite cannot have")
     return parser.parse_args()
 
