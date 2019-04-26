@@ -298,9 +298,11 @@ def suite_ipc18_opt_adl():
 def suite_ipc18_opt_strips():
     return [
         'agricola-opt18-strips',
-        'data-network-opt18-strips',  # Conditional effects are removed by the translator.
+        # Conditional effects are removed by the translator.
+        'data-network-opt18-strips',
         'organic-synthesis-opt18-strips',
-        'organic-synthesis-split-opt18-strips',  # Conditional effects are removed by the translator.
+        # Conditional effects are removed by the translator.
+        'organic-synthesis-split-opt18-strips',
         'petri-net-alignment-opt18-strips',
         'snake-opt18-strips',
         'spider-opt18-strips',
@@ -325,9 +327,11 @@ def suite_ipc18_sat_adl():
 def suite_ipc18_sat_strips():
     return [
         'agricola-sat18-strips',
-        'data-network-sat18-strips',  # Conditional effects are removed by the translator.
+        # Conditional effects are removed by the translator.
+        'data-network-sat18-strips',
         'organic-synthesis-sat18-strips',
-        'organic-synthesis-split-sat18-strips',  # Conditional effects are removed by the translator.
+        # Conditional effects are removed by the translator.
+        'organic-synthesis-split-sat18-strips',
         'snake-sat18-strips',
         'spider-sat18-strips',
         'termes-sat18-strips',
