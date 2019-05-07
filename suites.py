@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+from collections import defaultdict
 import sys
 
 
@@ -549,27 +550,23 @@ DOMAIN_TO_TAGS = {
 }
 
 
-def get_domains_with_tag(suite, tag, invert=False):
-    result = []
-    for domain in suite:
-        if domain not in DOMAIN_TO_TAGS:
-            sys.exit("Could not find tag of domain {}".format(domain))
-        want_tag_in_domain = not invert
-        if (tag in DOMAIN_TO_TAGS[domain]) == want_tag_in_domain:
-            result.append(domain)
-    return result
+TAGS_TO_DOMAINS = defaultdict(set)
+for domain, tags in DOMAIN_TO_TAGS.items():
+    for tag in tags:
+        TAGS_TO_DOMAINS[tag].add(domain)
 
 
 def apply_tags(suite, with_tag, without_tag):
     allowed_tags = with_tag or []
     forbidden_tags = without_tag or []
+    domains = set(suite)
     for tag in allowed_tags:
         if tag in forbidden_tags:
             sys.exit("Tag {} is both allowed and forbidden".format(tag))
-        suite = get_domains_with_tag(suite, tag)
+        domains = domains.intersection(TAGS_TO_DOMAINS.get(tag, set()))
     for tag in forbidden_tags:
-        suite = get_domains_with_tag(suite, tag, invert=True)
-    return suite
+        domains = domains.difference(TAGS_TO_DOMAINS.get(tag, set()))
+    return sorted(domains)
 
 
 def get_suite_names():
