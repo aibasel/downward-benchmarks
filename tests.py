@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function
+
 from collections import Counter
 import os
 
@@ -14,7 +16,7 @@ def test_for_duplicates():
     for funcname in dir(suites):
         if not funcname.startswith('suite_'):
             continue
-        print 'Test', funcname
+        print('Test', funcname)
         func = getattr(suites, funcname)
         domains = func()
         assert domains == sorted(domains)
