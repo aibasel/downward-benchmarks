@@ -413,6 +413,11 @@ TAGS = [
 ]
 
 
+IMPLIED_TAGS = {
+    TAG_HAS_ONLY_BINARY_COST_ACTIONS: [TAG_HAS_ZERO_COST_ACTIONS],
+}
+
+
 DOMAIN_TO_TAGS = {
     'agricola-opt18-strips': [],
     'agricola-sat18-strips': [],
@@ -472,15 +477,15 @@ DOMAIN_TO_TAGS = {
     'nurikabe-opt18-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'nurikabe-sat18-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'openstacks': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
-    'openstacks-agl14-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-opt08-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-opt08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-opt11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-opt14-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-sat08-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-sat08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-sat11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'openstacks-sat14-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'openstacks-agl14-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-opt08-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-opt08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-opt11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-opt14-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-sat08-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-sat08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-sat11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'openstacks-sat14-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
     'openstacks-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'optical-telegraphs': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'organic-synthesis-opt18-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
@@ -496,10 +501,10 @@ DOMAIN_TO_TAGS = {
     'parking-sat14-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'pathways': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'pathways-noneg': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
-    'pegsol-08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'pegsol-opt11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'pegsol-sat11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'petri-net-alignment-opt18-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'pegsol-08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'pegsol-opt11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'pegsol-sat11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'petri-net-alignment-opt18-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
     'philosophers': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'pipesworld-notankage': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'pipesworld-tankage': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
@@ -516,12 +521,12 @@ DOMAIN_TO_TAGS = {
     'settlers-sat18-adl': [TAG_HAS_ZERO_COST_ACTIONS],
     'snake-opt18-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'snake-sat18-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
-    'sokoban-opt08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'sokoban-opt11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'sokoban-sat08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'sokoban-sat11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'spider-opt18-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
-    'spider-sat18-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS, TAG_HAS_ZERO_COST_ACTIONS],
+    'sokoban-opt08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'sokoban-opt11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'sokoban-sat08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'sokoban-sat11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'spider-opt18-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'spider-sat18-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
     'storage': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'termes-opt18-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'termes-sat18-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
@@ -557,6 +562,9 @@ TAGS_TO_DOMAINS = defaultdict(set)
 for domain, tags in DOMAIN_TO_TAGS.items():
     for tag in tags:
         TAGS_TO_DOMAINS[tag].add(domain)
+        if tag in IMPLIED_TAGS:
+            for implied_tag in IMPLIED_TAGS[tag]:
+                TAGS_TO_DOMAINS[implied_tag].add(domain)
 
 
 def apply_tags(suite, with_tag, without_tag):
