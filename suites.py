@@ -402,11 +402,11 @@ def suite_all():
         suite_alternative_formulations())
 
 
-## Applies to domains where all actions cost 1.
+# Applies to domains where all actions cost 1.
 TAG_HAS_ONLY_UNIT_COST_ACTIONS = 'unit-cost'
-## Applies to domains with at least one action of cost 0.
+# Applies to domains with at least one action of cost 0.
 TAG_HAS_ZERO_COST_ACTIONS = 'zero-cost'
-## Applies to domains with action costs of 0 or 1.
+# Applies to domains with action costs of 0 or 1.
 TAG_HAS_ONLY_BINARY_COST_ACTIONS = 'binary-cost'
 
 
@@ -599,9 +599,11 @@ def _parse_args():
     parser = argparse.ArgumentParser(description=HELP)
     parser.add_argument("suite", choices=get_suite_names(), help="suite name")
     parser.add_argument("--with-tag", nargs='+', choices=TAGS,
-        help="specify tags that domains of the chosen suite must have")
+                        help="specify tags that domains of the chosen suite "
+                        "must have")
     parser.add_argument("--without-tag", nargs='+', choices=TAGS,
-        help="specify tags that domains of the chosen suite cannot have")
+                        help="specify tags that domains of the chosen suite "
+                        "cannot have")
     return parser.parse_args()
 
 
