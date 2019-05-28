@@ -69,3 +69,12 @@ def test_file_endings():
     for path in paths:
         for filename in sorted(os.listdir(path)):
             assert filename.endswith(".pddl"), (path, filename)
+
+
+def test_all_domains_in_domain_to_tags():
+    dirs = set(
+        path for path in os.listdir(REPO)
+        if os.path.isdir(os.path.join(REPO, path)) and
+        not path.startswith((".", "_")))
+    domains = set(DOMAIN_TO_TAGS.keys())
+    assert domains == dirs
