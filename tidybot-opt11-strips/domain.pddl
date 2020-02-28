@@ -5,7 +5,7 @@
 
 (define (domain TIDYBOT)
   (:requirements :strips :typing :equality)
-  (:types robot cart object xc yc xrel yrel)
+  (:types robot cart_t object xc yc xrel yrel)
   (:predicates
    ;; Constant preds
    (leftof                   ?x1 - xc ?x2 - xc)
@@ -35,11 +35,11 @@
    (gripper-obstacle         ?x - xc  ?y - yc)
  
    ;; Cart
-   (pushing       ?r - robot ?c - cart)
+   (pushing       ?r - robot ?c - cart_t)
    (not-pushing   ?r - robot)
-   (not-pushed    ?c - cart)
-   (cart-pos      ?c - cart ?x - xc ?y - yc)
-   (on-cart       ?o - object ?c - cart) 
+   (not-pushed    ?c - cart_t)
+   (cart-pos      ?c - cart_t ?x - xc ?y - yc)
+   (on-cart       ?o - object ?c - cart_t)
    )
 
   ;; Base movement actions
@@ -102,7 +102,7 @@
   ;; Base movement with cart
 
   (:action base-cart-left
-   :parameters (?r - robot ?c - cart ?x1 - xc ?x2 - xc ?y - yc ?cx1 - xc ?cx2 - xc ?cy - yc)
+   :parameters (?r - robot ?c - cart_t ?x1 - xc ?x2 - xc ?y - yc ?cx1 - xc ?cx2 - xc ?cy - yc)
    :precondition (and (pushing ?r ?c) (leftof ?x2 ?x1) (leftof ?cx2 ?cx1) 
                       (base-pos ?r ?x1 ?y) (cart-pos ?c ?cx1 ?cy)
                       (not (base-obstacle ?x2 ?y)) (not (base-obstacle ?cx2 ?cy)))
@@ -114,7 +114,7 @@
 
 
   (:action base-cart-right
-   :parameters (?r - robot ?c - cart ?x1 - xc ?x2 - xc ?y - yc ?cx1 - xc ?cx2 - xc ?cy - yc)
+   :parameters (?r - robot ?c - cart_t ?x1 - xc ?x2 - xc ?y - yc ?cx1 - xc ?cx2 - xc ?cy - yc)
    :precondition (and (pushing ?r ?c) (leftof ?x1 ?x2) (leftof ?cx1 ?cx2) 
                       (base-pos ?r ?x1 ?y) (cart-pos ?c ?cx1 ?cy)
                       (not (base-obstacle ?x2 ?y)) (not (base-obstacle ?cx2 ?cy)))
@@ -125,7 +125,7 @@
 
   
   (:action base-cart-up
-   :parameters (?r - robot ?c - cart ?x - xc ?y1 - yc ?y2 - yc ?cx - xc ?cy1 - yc ?cy2 - yc)
+   :parameters (?r - robot ?c - cart_t ?x - xc ?y1 - yc ?y2 - yc ?cx - xc ?cy1 - yc ?cy2 - yc)
    :precondition (and (pushing ?r ?c) (above ?y2 ?y1) (above ?cy2 ?cy1) 
                       (base-pos ?r ?x ?y1) (cart-pos ?c ?cx ?cy1)
                       (not (base-obstacle ?x ?y2)) (not (base-obstacle ?cx ?cy2)))
@@ -136,7 +136,7 @@
 
   
   (:action base-cart-down
-   :parameters (?r - robot ?c - cart ?x - xc ?y1 - yc ?y2 - yc ?cx - xc ?cy1 - yc ?cy2 - yc)
+   :parameters (?r - robot ?c - cart_t ?x - xc ?y1 - yc ?y2 - yc ?cx - xc ?cy1 - yc ?cy2 - yc)
    :precondition (and (pushing ?r ?c) (above ?y1 ?y2) (above ?cy1 ?cy2) 
                       (base-pos ?r ?x ?y1) (cart-pos ?c ?cx ?cy1)
                       (not (base-obstacle ?x ?y2)) (not (base-obstacle ?cx ?cy2)))
@@ -215,7 +215,7 @@
 
   ;; Cart grasping/ungrasping
   (:action grasp-cart-left
-   :parameters (?r - robot ?c - cart ?x - xc ?y - yc ?cx - xc)
+   :parameters (?r - robot ?c - cart_t ?x - xc ?y - yc ?cx - xc)
    :precondition (and (not (parked ?r)) (not-pushed ?c)
                       (base-pos ?r ?x ?y) (cart-pos ?c ?cx ?y)
                       (leftof ?cx ?x) (not-pushing ?r))
@@ -223,28 +223,28 @@
 
 
   (:action grasp-cart-right
-   :parameters (?r - robot ?c - cart ?x - xc ?y - yc ?cx - xc)
+   :parameters (?r - robot ?c - cart_t ?x - xc ?y - yc ?cx - xc)
    :precondition (and (not (parked ?r)) (not-pushed ?c)
                       (base-pos ?r ?x ?y) (cart-pos ?c ?cx ?y)
                       (leftof ?x ?cx) (not-pushing ?r))
    :effect       (and (pushing ?r ?c) (not (not-pushing ?r)) (not (not-pushed ?c))))
 
   (:action grasp-cart-above
-   :parameters (?r - robot ?c - cart ?x - xc ?y - yc ?cy - yc)
+   :parameters (?r - robot ?c - cart_t ?x - xc ?y - yc ?cy - yc)
    :precondition (and (not (parked ?r)) (not-pushed ?c)
                       (base-pos ?r ?x ?y) (cart-pos ?c ?x ?cy)
                       (above ?cy ?y) (not-pushing ?r))
    :effect       (and (pushing ?r ?c) (not (not-pushing ?r)) (not (not-pushed ?c))))
   
   (:action grasp-cart-below
-   :parameters (?r - robot ?c - cart ?x - xc ?y - yc ?cy - yc)
+   :parameters (?r - robot ?c - cart_t ?x - xc ?y - yc ?cy - yc)
    :precondition (and (not (parked ?r)) (not-pushed ?c)
                       (base-pos ?r ?x ?y) (cart-pos ?c ?x ?cy)
                       (above ?y ?cy) (not-pushing ?r))
    :effect       (and (pushing ?r ?c) (not (not-pushing ?r)) (not (not-pushed ?c))))
 
   (:action ungrasp-cart
-   :parameters (?r - robot ?c - cart )
+   :parameters (?r - robot ?c - cart_t )
    :precondition (and (pushing ?r ?c))
    :effect (and (not (pushing ?r ?c)) (not-pushing ?r) (not-pushed ?c)))
   
@@ -325,7 +325,7 @@
 
   (:action get-from-cart
    :parameters (?r - robot ?x - xc ?y - yc ?gxrel - xrel 
-                ?gyrel - yrel ?o - object ?c - cart
+                ?gyrel - yrel ?o - object ?c - cart_t
                 ?cx - xc ?cy - yc)
    :precondition (and (parked ?r) (base-pos ?r ?x ?y)
                       (gripper-rel ?r ?gxrel ?gyrel) (sum-x ?x ?gxrel ?cx)
@@ -420,7 +420,7 @@
 
   (:action put-on-cart
    :parameters (?r - robot ?x - xc ?y - yc ?gxrel - xrel 
-                ?gyrel - yrel ?o - object ?c - cart ?cx - xc ?cy - yc)
+                ?gyrel - yrel ?o - object ?c - cart_t ?cx - xc ?cy - yc)
 
    :precondition (and (parked ?r) (base-pos ?r ?x ?y) (gripper-rel ?r ?gxrel ?gyrel)
                       (sum-x ?x ?gxrel ?cx) (sum-y ?y ?gyrel ?cy) (cart-pos ?c ?cx ?cy)

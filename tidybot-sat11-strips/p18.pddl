@@ -4,7 +4,7 @@
   
   (:objects 
    pr2 - robot 
-   cart - cart 
+   cart - cart_t
    object0 - object 
    object1 - object 
    object2 - object 
