@@ -372,7 +372,8 @@ def suite_optimal_strips():
 
 
 def suite_optimal():
-    return sorted(suite_optimal_adl() + suite_optimal_strips())
+    return sorted(suite_optimal_adl() + list(
+        set(suite_optimal_strips()) - set(suite_ipc06_strips_compilations())))
 
 
 def suite_satisficing_adl():
