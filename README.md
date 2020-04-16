@@ -13,7 +13,10 @@ Please note that some IPC 2014 domains from the satisificing (sat)
 track were also used in the multicore (mco) and agile (agl) tracks.
 Please consult suites.py for the full domain lists of these two tracks.
 
-The "optimal_strips" suite has been uploaded to Zenodo to make it citable:
+The collection contains some inofficial domain reformulations which we
+do not recommend for paper experiments:
 
-  - 1998-2014 version: https://doi.org/10.5281/zenodo.1205019
-  - 1998-2018 version: https://doi.org/10.5281/zenodo.2616479
+  * no-mprime and no-mystery are copies of mprime and mystery but with
+    speaking predicate names.
+  * pathways-noneg is identical to pathways but without negative
+    preconditions.
