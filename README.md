@@ -31,5 +31,3 @@ been useful for debugging purposes:
     (as in the original IPC domain).
   * mystery-renamed is a copy of mystery but with speaking predicate
     names.
-  * pathways-noneg is identical to pathways but without negative
-    preconditions.
