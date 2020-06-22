@@ -25,7 +25,7 @@ _PREFIX = "suite_"
 
 
 def suite_alternative_formulations():
-    return ['airport-adl', 'no-mprime', 'no-mystery']
+    return ['airport-adl']
 
 
 def suite_ipc98_to_ipc04_adl():
@@ -53,7 +53,6 @@ def suite_ipc98_to_ipc04():
 def suite_ipc06_adl():
     return [
         'openstacks',
-        'pathways',
         'trucks',
     ]
 
@@ -61,13 +60,13 @@ def suite_ipc06_adl():
 def suite_ipc06_strips_compilations():
     return [
         'openstacks-strips',
-        'pathways-noneg',
         'trucks-strips',
     ]
 
 
 def suite_ipc06_strips():
     return [
+        'pathways',
         'pipesworld-tankage',
         'rovers',
         'storage',
@@ -475,8 +474,6 @@ DOMAIN_TO_TAGS = {
     'movie': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'mprime': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'mystery': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
-    'no-mprime': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
-    'no-mystery': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'nomystery-opt11-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'nomystery-sat11-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'nurikabe-opt18-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
@@ -505,7 +502,6 @@ DOMAIN_TO_TAGS = {
     'parking-sat11-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'parking-sat14-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'pathways': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
-    'pathways-noneg': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'pegsol-08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
     'pegsol-opt11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
     'pegsol-sat11-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
