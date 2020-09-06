@@ -3,6 +3,7 @@
 
 import argparse
 from collections import defaultdict
+import json
 import sys
 
 
@@ -608,7 +609,8 @@ def main():
     args = _parse_args()
     suite = get_suite(args.suite)
     suite = apply_tags(suite, args.with_tag, args.without_tag)
-    print(suite)
+    # Use json module to print double-quote strings.
+    print(json.dumps(suite))
 
 
 if __name__ == "__main__":
