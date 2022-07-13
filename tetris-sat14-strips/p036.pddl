@@ -16,7 +16,7 @@ f11-0f f11-1f f11-2f f11-3f
 f12-0f f12-1f f12-2f f12-3f 
 f13-0f f13-1f f13-2f f13-3f - position
 square0 square1 - one_square
-nada- two_straight
+nada - two_straight
 rightl0 rightl1 rightl2 rightl3 rightl4 - right_l
 )
 (:init

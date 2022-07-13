@@ -11,7 +11,7 @@ f6-0f f6-1f f6-2f f6-3f
 f7-0f f7-1f f7-2f f7-3f 
 f8-0f f8-1f f8-2f f8-3f 
 f9-0f f9-1f f9-2f f9-3f - position
-nothing- one_square
+nothing - one_square
 straight0 straight1 straight2 straight3 - two_straight
 rightl0 rightl1 rightl2 - right_l
 )
