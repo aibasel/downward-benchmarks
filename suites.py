@@ -349,6 +349,53 @@ def suite_ipc18():
         suite_ipc18_opt() + suite_ipc18_sat()))
 
 
+def suite_ipc23_opt_adl():
+    return [
+        'folding-opt23-adl',
+        'labyrinth-opt23-adl',
+        'recharging-robots-opt23-adl',
+        'ricochet-robots-opt23-adl',
+        'rubiks-cube-opt23-adl',
+        'slitherlink-opt23-adl',
+    ]
+
+
+def suite_ipc23_opt_strips():
+    return [
+        'quantum-layout-opt23-strips',
+    ]
+
+
+def suite_ipc23_opt():
+    return sorted(suite_ipc23_opt_adl() + suite_ipc23_opt_strips())
+
+
+def suite_ipc23_sat_adl():
+    return [
+        'folding-sat23-adl',
+        'labyrinth-sat23-adl',
+        'recharging-robots-sat23-adl',
+        'ricochet-robots-sat23-adl',
+        'rubiks-cube-sat23-adl',
+        'slitherlink-sat23-adl',
+    ]
+
+
+def suite_ipc23_sat_strips():
+    return [
+        'quantum-layout-sat23-strips',
+    ]
+
+
+def suite_ipc23_sat():
+    return sorted(suite_ipc23_sat_adl() + suite_ipc23_sat_strips())
+
+
+def suite_ipc23():
+    return sorted(set(
+        suite_ipc23_opt() + suite_ipc23_sat()))
+
+
 def suite_unsolvable():
     return sorted(
         ['mystery:prob%02d.pddl' % index
@@ -360,7 +407,7 @@ def suite_optimal_adl():
     return sorted(
         suite_ipc98_to_ipc04_adl() + suite_ipc06_adl() +
         suite_ipc08_opt_adl() + suite_ipc14_opt_adl() +
-        suite_ipc18_opt_adl())
+        suite_ipc18_opt_adl() + suite_ipc23_opt_adl())
 
 
 def suite_optimal_strips():
@@ -368,7 +415,7 @@ def suite_optimal_strips():
         suite_ipc98_to_ipc04_strips() + suite_ipc06_strips() +
         suite_ipc06_strips_compilations() + suite_ipc08_opt_strips() +
         suite_ipc11_opt() + suite_ipc14_opt_strips() +
-        suite_ipc18_opt_strips())
+        suite_ipc18_opt_strips() + suite_ipc23_opt_strips())
 
 
 def suite_optimal():
@@ -380,7 +427,7 @@ def suite_satisficing_adl():
     return sorted(
         suite_ipc98_to_ipc04_adl() + suite_ipc06_adl() +
         suite_ipc08_sat_adl() + suite_ipc14_sat_adl() +
-        suite_ipc18_sat_adl())
+        suite_ipc18_sat_adl() + suite_ipc23_sat_adl())
 
 
 def suite_satisficing_strips():
@@ -388,7 +435,7 @@ def suite_satisficing_strips():
         suite_ipc98_to_ipc04_strips() + suite_ipc06_strips() +
         suite_ipc06_strips_compilations() + suite_ipc08_sat_strips() +
         suite_ipc11_sat() + suite_ipc14_sat_strips() +
-        suite_ipc18_sat_strips())
+        suite_ipc18_sat_strips() + suite_ipc23_sat_strips())
 
 
 def suite_satisficing():
@@ -399,7 +446,7 @@ def suite_all():
     return sorted(
         suite_ipc98_to_ipc04() + suite_ipc06() +
         suite_ipc06_strips_compilations() + suite_ipc08() +
-        suite_ipc11() + suite_ipc14() + suite_ipc18() +
+        suite_ipc11() + suite_ipc14() + suite_ipc18() + suite_ipc23() +
         suite_alternative_formulations())
 
 
@@ -457,6 +504,8 @@ DOMAIN_TO_TAGS = {
     'floortile-opt14-strips': [],
     'floortile-sat11-strips': [],
     'floortile-sat14-strips': [],
+    'folding-opt23-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'folding-sat23-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
     'freecell': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'ged-opt14-strips': [TAG_HAS_ZERO_COST_ACTIONS],
     'ged-sat14-strips': [TAG_HAS_ZERO_COST_ACTIONS],
@@ -465,6 +514,8 @@ DOMAIN_TO_TAGS = {
     'hiking-agl14-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'hiking-opt14-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'hiking-sat14-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'labyrinth-opt23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'labyrinth-sat23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'logistics00': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'logistics98': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'maintenance-opt14-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
@@ -513,7 +564,15 @@ DOMAIN_TO_TAGS = {
     'psr-large': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'psr-middle': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'psr-small': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'quantum-layout-opt23-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'quantum-layout-sat23-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'recharging-robots-opt23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'recharging-robots-sat23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'ricochet-robots-opt23-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
+    'ricochet-robots-sat23-adl': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
     'rovers': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'rubiks-cube-opt23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'rubiks-cube-sat23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'satellite': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'scanalyzer-08-strips': [],
     'scanalyzer-opt11-strips': [],
@@ -521,6 +580,8 @@ DOMAIN_TO_TAGS = {
     'schedule': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'settlers-opt18-adl': [TAG_HAS_ZERO_COST_ACTIONS],
     'settlers-sat18-adl': [TAG_HAS_ZERO_COST_ACTIONS],
+    'slitherlink-opt23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
+    'slitherlink-sat23-adl': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'snake-opt18-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'snake-sat18-strips': [TAG_HAS_ONLY_UNIT_COST_ACTIONS],
     'sokoban-opt08-strips': [TAG_HAS_ONLY_BINARY_COST_ACTIONS],
