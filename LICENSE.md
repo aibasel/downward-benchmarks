@@ -1,13 +1,13 @@
 # Domain Licenses
 
 The domains in this collection were written by different authors and are under
-different licenses. Most domains were never fomally released under a license. In
+different licenses. Most domains were never formally released under a license. In
 this file, we start to collect licenses for all of the domains.
 
 # Public Domain
 
-* termes-opt18-strips
-* termes-sat18-strips
+* termes-opt18-strips, termes-sat18-strips
+  written by Florian Pommerening
 
 
 # Unknown License
