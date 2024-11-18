@@ -1,3 +1,6 @@
+; LICENSE: CC0 (public domain)
+; Domain created by Florian Pommerening. This file may be used without restrictions.
+
 (define (problem termes-00038-0036-4x3x3-random_towers_4x3_3_1_3)
 (:domain termes)
 ; termes-00038-0036-4x3x3-random_towers_4x3_3_1_3

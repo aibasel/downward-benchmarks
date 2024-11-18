@@ -1,3 +1,6 @@
+; LICENSE: CC0 (public domain)
+; Domain created by Florian Pommerening. This file may be used without restrictions.
+
 (define (problem termes-01056-0120-5x5x6-empire)
 (:domain termes)
 ; termes-01056-0120-5x5x6-empire
