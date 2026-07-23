@@ -19,11 +19,11 @@ Notes on changes per domain
 - **mprime**: In contrast to the original mprime domain, our version forbids
 artificially generating additional fuel.
 
-- **maintenance-opt14-adl**: We removed predicates specified twice in the
-initial state.
+- **maintenance-opt14-adl**:
+We removed predicates that were specified twice in the initial state.
 
-- **assembly**: We removed predicates that were specified twice in the initial
-state.
+- **assembly**:
+We removed predicates that were specified twice in the initial state.
 
 Unofficial Reformulations
 -------------------------
