@@ -13,11 +13,17 @@ Please note that some IPC 2014 domains from the satisificing (sat)
 track were also used in the multicore (mco) and agile (agl) tracks.
 Please consult suites.py for the full domain lists of these two tracks.
 
-Notes on specific domains
+Notes on changes per domain
 -------------------------
 
-**mprime**: in contrast to the original mprime domain, our version forbids
+- **mprime**: In contrast to the original mprime domain, our version forbids
 artificially generating additional fuel.
+
+- **maintenance-opt14-adl**: We removed predicates specified twice in the
+initial state.
+
+- **assembly**: We removed predicates that were specified twice in the initial
+state.
 
 Unofficial Reformulations
 -------------------------

@@ -189,8 +189,6 @@
           ;; (assemble-order coil plug device) ;; BUG: coil not defined -- Malte
           (assemble-order hoozawhatsie foobar bracket)
           (assemble-order foobar gimcrack bracket)
-          (assemble-order foobar gimcrack bracket)
-          (assemble-order foobar gimcrack whatsis)
           (assemble-order foobar gimcrack whatsis)
           (remove-order gimcrack foobar whatsis))
    (:goal (complete connector)))
