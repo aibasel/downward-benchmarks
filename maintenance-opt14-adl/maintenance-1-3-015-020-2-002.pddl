@@ -23,7 +23,6 @@
   (at ap9 d1 BER)
   (at ap9 d9 HAM)
   (at ap10 d4 FRA)
-  (at ap10 d4 FRA)
   (at ap11 d12 BER)
   (at ap11 d14 BER)
   (at ap12 d12 BER)

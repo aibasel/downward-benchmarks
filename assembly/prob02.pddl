@@ -47,8 +47,6 @@
           (assemble-order sprocket hack gimcrack)
           (assemble-order frob foobar hack)
           (assemble-order widget valve socket)
-          (assemble-order widget valve socket)
-          (assemble-order widget valve doodad)
           (assemble-order widget valve doodad)
           (remove-order valve widget doodad))
    (:goal (complete mount)))

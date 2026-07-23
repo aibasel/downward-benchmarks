@@ -73,7 +73,6 @@
           (assemble-order connector-5 mount-7 kludge-4)
           (remove-order mount-7 connector-5 kludge-4)
           (assemble-order bracket device kludge-4)
-          (assemble-order bracket device kludge-4)
           (assemble-order sprocket-3 bracket kludge-4)
           (assemble-order sprocket-3 connector-5 kludge-4)
           (assemble-order socket-2 device-1 foobar)
@@ -86,7 +85,6 @@
           (assemble-order hack connector-5 contraption)
           ;; (remove-order sprocket hack contraption) ;; BUG: sprocket not defined -- Malte
           (assemble-order connector-5 mount-7 contraption)
-          (assemble-order bracket device fastener)
           (assemble-order bracket device fastener)
           (remove-order device bracket fastener))
    (:goal (complete unit)))
