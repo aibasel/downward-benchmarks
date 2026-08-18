@@ -25,6 +25,9 @@ We removed predicates that were specified twice in the initial state.
 - **assembly**:
 We removed predicates that were specified twice in the initial state.
 
+- **organic-synthesis-sat18-strips**:
+We removed predicates that were specified twice in the initial state.
+
 Unofficial Reformulations
 -------------------------
 

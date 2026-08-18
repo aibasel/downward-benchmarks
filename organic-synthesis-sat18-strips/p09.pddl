@@ -125,7 +125,6 @@
     (doublebond c3 o2)
     (doublebond o2 c3)
     (bond c3 c4)
-    (bond c3 c4)
     (bond c1 h1)
     (bond c1 h2)
     (bond c1 h3)
